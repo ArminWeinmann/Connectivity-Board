@@ -1,0 +1,254 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"75 src/pba_systick.c
+[; ;src/pba_systick.c: 75: volatile static soft_timer_t softTimer[6];
+[c E54 0 1 .. ]
+[n E54 . NOT_RUNNING RUNNING  ]
+[v F62 `(v ~T0 @X0 0 tf ]
+"63
+[; ;src/pba_systick.c: 63: {
+[s S1 `ul 1 `E54 1 `*F62 1 ]
+[n S1 . tickCnt state p_callbackFunction ]
+"62 src/../inc/pba_systick.h
+[; ;src/../inc/pba_systick.h: 62: void SYSTICK_TimerLoad(uint8_t descriptor, uint32_t loadValue);
+[v _SYSTICK_TimerLoad `(v ~T0 @X0 0 ef2`uc`ul ]
+[v F79 `(v ~T0 @X0 0 tf ]
+[v F82 `(v ~T0 @X0 0 tf ]
+[v F90 `(v ~T0 @X0 0 tf ]
+"75 src/pba_systick.c
+[; ;src/pba_systick.c: 75: volatile static soft_timer_t softTimer[6];
+[v _softTimer `VS1 ~T0 @X0 -> 6 `i s ]
+"85
+[; ;src/pba_systick.c: 85: void SYSTICK_TimerRun(uint8_t descriptor)
+[v _SYSTICK_TimerRun `(v ~T0 @X0 1 ef1`uc ]
+"86
+[; ;src/pba_systick.c: 86: {
+{
+[e :U _SYSTICK_TimerRun ]
+"85
+[; ;src/pba_systick.c: 85: void SYSTICK_TimerRun(uint8_t descriptor)
+[v _descriptor `uc ~T0 @X0 1 r1 ]
+"86
+[; ;src/pba_systick.c: 86: {
+[f ]
+"88
+[; ;src/pba_systick.c: 88:     if(descriptor < 6)
+[e $ ! < -> _descriptor `i -> 6 `i 3  ]
+"89
+[; ;src/pba_systick.c: 89:     {
+{
+"90
+[; ;src/pba_systick.c: 90:         softTimer[descriptor].state = RUNNING;
+[e = . *U + &U _softTimer * -> _descriptor `ux -> -> # *U &U _softTimer `ui `ux 1 . `E54 1 ]
+"91
+[; ;src/pba_systick.c: 91:     }
+}
+[e :U 3 ]
+"92
+[; ;src/pba_systick.c: 92: }
+[e :UE 2 ]
+}
+"100
+[; ;src/pba_systick.c: 100: void SYSTICK_TimerLoadAndRun(uint8_t descriptor, uint32_t loadValue)
+[v _SYSTICK_TimerLoadAndRun `(v ~T0 @X0 1 ef2`uc`ul ]
+"101
+[; ;src/pba_systick.c: 101: {
+{
+[e :U _SYSTICK_TimerLoadAndRun ]
+"100
+[; ;src/pba_systick.c: 100: void SYSTICK_TimerLoadAndRun(uint8_t descriptor, uint32_t loadValue)
+[v _descriptor `uc ~T0 @X0 1 r1 ]
+[v _loadValue `ul ~T0 @X0 1 r2 ]
+"101
+[; ;src/pba_systick.c: 101: {
+[f ]
+"103
+[; ;src/pba_systick.c: 103:     SYSTICK_TimerLoad(descriptor, loadValue);
+[e ( _SYSTICK_TimerLoad (2 , _descriptor _loadValue ]
+"104
+[; ;src/pba_systick.c: 104:     SYSTICK_TimerRun(descriptor);
+[e ( _SYSTICK_TimerRun (1 _descriptor ]
+"105
+[; ;src/pba_systick.c: 105: }
+[e :UE 4 ]
+}
+"112
+[; ;src/pba_systick.c: 112: void SYSTICK_TimerLoad(uint8_t descriptor, uint32_t loadValue)
+[v _SYSTICK_TimerLoad `(v ~T0 @X0 1 ef2`uc`ul ]
+"113
+[; ;src/pba_systick.c: 113: {
+{
+[e :U _SYSTICK_TimerLoad ]
+"112
+[; ;src/pba_systick.c: 112: void SYSTICK_TimerLoad(uint8_t descriptor, uint32_t loadValue)
+[v _descriptor `uc ~T0 @X0 1 r1 ]
+[v _loadValue `ul ~T0 @X0 1 r2 ]
+"113
+[; ;src/pba_systick.c: 113: {
+[f ]
+"115
+[; ;src/pba_systick.c: 115:     if(descriptor < 6)
+[e $ ! < -> _descriptor `i -> 6 `i 6  ]
+"116
+[; ;src/pba_systick.c: 116:     {
+{
+"117
+[; ;src/pba_systick.c: 117:         softTimer[descriptor].tickCnt = loadValue;
+[e = . *U + &U _softTimer * -> _descriptor `ux -> -> # *U &U _softTimer `ui `ux 0 _loadValue ]
+"118
+[; ;src/pba_systick.c: 118:     }
+}
+[e :U 6 ]
+"119
+[; ;src/pba_systick.c: 119: }
+[e :UE 5 ]
+}
+"125
+[; ;src/pba_systick.c: 125: void SYSTICK_TimerStop(uint8_t descriptor)
+[v _SYSTICK_TimerStop `(v ~T0 @X0 1 ef1`uc ]
+"126
+[; ;src/pba_systick.c: 126: {
+{
+[e :U _SYSTICK_TimerStop ]
+"125
+[; ;src/pba_systick.c: 125: void SYSTICK_TimerStop(uint8_t descriptor)
+[v _descriptor `uc ~T0 @X0 1 r1 ]
+"126
+[; ;src/pba_systick.c: 126: {
+[f ]
+"128
+[; ;src/pba_systick.c: 128:     if(descriptor < 6)
+[e $ ! < -> _descriptor `i -> 6 `i 8  ]
+"129
+[; ;src/pba_systick.c: 129:     {
+{
+"130
+[; ;src/pba_systick.c: 130:         softTimer[descriptor].state = NOT_RUNNING;
+[e = . *U + &U _softTimer * -> _descriptor `ux -> -> # *U &U _softTimer `ui `ux 1 . `E54 0 ]
+"131
+[; ;src/pba_systick.c: 131:     }
+}
+[e :U 8 ]
+"132
+[; ;src/pba_systick.c: 132: }
+[e :UE 7 ]
+}
+"139
+[; ;src/pba_systick.c: 139: _Bool SYSTICK_Timeout(uint8_t descriptor)
+[v _SYSTICK_Timeout `(a ~T0 @X0 1 ef1`uc ]
+"140
+[; ;src/pba_systick.c: 140: {
+{
+[e :U _SYSTICK_Timeout ]
+"139
+[; ;src/pba_systick.c: 139: _Bool SYSTICK_Timeout(uint8_t descriptor)
+[v _descriptor `uc ~T0 @X0 1 r1 ]
+"140
+[; ;src/pba_systick.c: 140: {
+[f ]
+"141
+[; ;src/pba_systick.c: 141:     _Bool isTimeout = 0;
+[v _isTimeout `a ~T0 @X0 1 a ]
+[e = _isTimeout -> -> 0 `i `a ]
+"143
+[; ;src/pba_systick.c: 143:     if(descriptor < 6)
+[e $ ! < -> _descriptor `i -> 6 `i 10  ]
+"144
+[; ;src/pba_systick.c: 144:     {
+{
+"145
+[; ;src/pba_systick.c: 145:         if(softTimer[descriptor].state == RUNNING && softTimer[descriptor].tickCnt == 0)
+[e $ ! && == -> . *U + &U _softTimer * -> _descriptor `ux -> -> # *U &U _softTimer `ui `ux 1 `ui -> . `E54 1 `ui == . *U + &U _softTimer * -> _descriptor `ux -> -> # *U &U _softTimer `ui `ux 0 -> -> -> 0 `i `l `ul 11  ]
+"146
+[; ;src/pba_systick.c: 146:         {
+{
+"147
+[; ;src/pba_systick.c: 147:             SYSTICK_TimerStop(descriptor);
+[e ( _SYSTICK_TimerStop (1 _descriptor ]
+"148
+[; ;src/pba_systick.c: 148:             isTimeout = 1;
+[e = _isTimeout -> -> 1 `i `a ]
+"149
+[; ;src/pba_systick.c: 149:         }
+}
+[e :U 11 ]
+"150
+[; ;src/pba_systick.c: 150:     }
+}
+[e :U 10 ]
+"151
+[; ;src/pba_systick.c: 151:     return isTimeout;
+[e ) _isTimeout ]
+[e $UE 9  ]
+"152
+[; ;src/pba_systick.c: 152: }
+[e :UE 9 ]
+}
+"160
+[; ;src/pba_systick.c: 160: void SYSTICK_AddTimeoutHandler(uint8_t descriptor, void (*p_Function)(void)){
+[v _SYSTICK_AddTimeoutHandler `(v ~T0 @X0 1 ef2`uc`*F79 ]
+{
+[e :U _SYSTICK_AddTimeoutHandler ]
+[v _descriptor `uc ~T0 @X0 1 r1 ]
+[v _p_Function `*F82 ~T0 @X0 1 r2 ]
+[f ]
+"161
+[; ;src/pba_systick.c: 161:     softTimer[descriptor].p_callbackFunction = p_Function;
+[e = . *U + &U _softTimer * -> _descriptor `ux -> -> # *U &U _softTimer `ui `ux 2 _p_Function ]
+"162
+[; ;src/pba_systick.c: 162: }
+[e :UE 12 ]
+}
+"168
+[; ;src/pba_systick.c: 168: void SYSTICK_Handler(void)
+[v _SYSTICK_Handler `(v ~T0 @X0 1 ef ]
+"169
+[; ;src/pba_systick.c: 169: {
+{
+[e :U _SYSTICK_Handler ]
+[f ]
+"172
+[; ;src/pba_systick.c: 172:     for (uint8_t i = 0; i < 6; i++)
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 14  ]
+[e $U 15  ]
+[e :U 14 ]
+"173
+[; ;src/pba_systick.c: 173:     {
+{
+"174
+[; ;src/pba_systick.c: 174:         if (softTimer[i].state == RUNNING && softTimer[i].tickCnt > 0)
+[e $ ! && == -> . *U + &U _softTimer * -> _i `ux -> -> # *U &U _softTimer `ui `ux 1 `ui -> . `E54 1 `ui > . *U + &U _softTimer * -> _i `ux -> -> # *U &U _softTimer `ui `ux 0 -> -> -> 0 `i `l `ul 17  ]
+"175
+[; ;src/pba_systick.c: 175:         {
+{
+"176
+[; ;src/pba_systick.c: 176:             softTimer[i].tickCnt--;
+[e -- . *U + &U _softTimer * -> _i `ux -> -> # *U &U _softTimer `ui `ux 0 -> -> 1 `i `Vul ]
+"177
+[; ;src/pba_systick.c: 177:             if(softTimer[i].tickCnt == 0 && softTimer[i].p_callbackFunction != 0){
+[e $ ! && == . *U + &U _softTimer * -> _i `ux -> -> # *U &U _softTimer `ui `ux 0 -> -> -> 0 `i `l `ul != . *U + &U _softTimer * -> _i `ux -> -> # *U &U _softTimer `ui `ux 2 -> -> 0 `i `*F90 18  ]
+{
+"178
+[; ;src/pba_systick.c: 178:                 softTimer[i].p_callbackFunction();
+[e ( *U . *U + &U _softTimer * -> _i `ux -> -> # *U &U _softTimer `ui `ux 2 ..  ]
+"179
+[; ;src/pba_systick.c: 179:             }
+}
+[e :U 18 ]
+"180
+[; ;src/pba_systick.c: 180:         }
+}
+[e :U 17 ]
+"181
+[; ;src/pba_systick.c: 181:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 14  ]
+[e :U 15 ]
+}
+"182
+[; ;src/pba_systick.c: 182: }
+[e :UE 13 ]
+}

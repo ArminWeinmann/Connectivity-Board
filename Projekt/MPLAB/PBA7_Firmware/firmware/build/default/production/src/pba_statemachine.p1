@@ -1,0 +1,98 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"46 src/pba_statemachine.c
+[; ;src/pba_statemachine.c: 46: static uint8_t currentState;
+[v _currentState `uc ~T0 @X0 1 s ]
+"47
+[; ;src/pba_statemachine.c: 47: static uint8_t previousState = 255;
+[v _previousState `uc ~T0 @X0 1 s ]
+[i _previousState
+-> -> 255 `i `uc
+]
+"48
+[; ;src/pba_statemachine.c: 48: static uint8_t *p_state;
+[v _p_state `*uc ~T0 @X0 1 s ]
+"96
+[; ;src/pba_statemachine.c: 96: void STATEMACHINE_Init(uint8_t *p_statePointer){
+[v _STATEMACHINE_Init `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _STATEMACHINE_Init ]
+[v _p_statePointer `*uc ~T0 @X0 1 r1 ]
+[f ]
+"97
+[; ;src/pba_statemachine.c: 97:     p_state = p_statePointer;
+[e = _p_state _p_statePointer ]
+"98
+[; ;src/pba_statemachine.c: 98:     currentState = *p_state;
+[e = _currentState *U _p_state ]
+"99
+[; ;src/pba_statemachine.c: 99: }
+[e :UE 1 ]
+}
+"106
+[; ;src/pba_statemachine.c: 106: void STATEMACHINE_Update(void){
+[v _STATEMACHINE_Update `(v ~T0 @X0 1 ef ]
+{
+[e :U _STATEMACHINE_Update ]
+[f ]
+"107
+[; ;src/pba_statemachine.c: 107:     previousState = currentState;
+[e = _previousState _currentState ]
+"108
+[; ;src/pba_statemachine.c: 108:     currentState = *p_state;
+[e = _currentState *U _p_state ]
+"109
+[; ;src/pba_statemachine.c: 109: }
+[e :UE 2 ]
+}
+"116
+[; ;src/pba_statemachine.c: 116: _Bool STATEMACHINE_StateEntry(void){
+[v _STATEMACHINE_StateEntry `(a ~T0 @X0 1 ef ]
+{
+[e :U _STATEMACHINE_StateEntry ]
+[f ]
+"117
+[; ;src/pba_statemachine.c: 117:     if(currentState!=previousState)
+[e $ ! != -> _currentState `i -> _previousState `i 4  ]
+"118
+[; ;src/pba_statemachine.c: 118:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 3  ]
+[e $U 5  ]
+"119
+[; ;src/pba_statemachine.c: 119:     else
+[e :U 4 ]
+"120
+[; ;src/pba_statemachine.c: 120:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 3  ]
+[e :U 5 ]
+"121
+[; ;src/pba_statemachine.c: 121: }
+[e :UE 3 ]
+}
+"128
+[; ;src/pba_statemachine.c: 128: _Bool STATEMACHINE_StateExit(void){
+[v _STATEMACHINE_StateExit `(a ~T0 @X0 1 ef ]
+{
+[e :U _STATEMACHINE_StateExit ]
+[f ]
+"129
+[; ;src/pba_statemachine.c: 129:     if(*p_state!=currentState)
+[e $ ! != -> *U _p_state `i -> _currentState `i 7  ]
+"130
+[; ;src/pba_statemachine.c: 130:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 6  ]
+[e $U 8  ]
+"131
+[; ;src/pba_statemachine.c: 131:     else
+[e :U 7 ]
+"132
+[; ;src/pba_statemachine.c: 132:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 6  ]
+[e :U 8 ]
+"133
+[; ;src/pba_statemachine.c: 133: }
+[e :UE 6 ]
+}
